@@ -3,7 +3,7 @@ use IEEE.std_logic_1164.all;
 use IEEE.std_logic_unsigned.all;
 
 entity SEQ is 
-	generic(BitsOfOpcode : integer := 4 NumOfControlLines : integer := 12);
+	generic(BitsOfOpcode : integer := 4; NumOfControlLines : integer := 12);
 	port(
 			InCLK,RESET_Neg, RAMAccess_Neg : in std_logic;
 			InOpeCode : in std_logic_vector(BitsOfOpCode - 1 downto 0);
@@ -86,33 +86,31 @@ OutCLRToPC_Neg   <= '0' when (t_state = STBY_CLR) else
 OutCLRToIREG     <= '1' when (t_state = STBY_CLR) else 
                     '0';
 OutControlSignal <= "010111100011" when (t_state = T1) else 
-		    "101111100011" when (t_state = T2) else
-		    "001001100011" when (t_state = T3) else
+						  "101111100011" when (t_state = T2) else
+						  "001001100011" when (t_state = T3) else
 						  
-		    "000110100011" when (t_state = T4_LDA) else
-		    "001011000011" when (t_state = T5_LDA) else
-		    "001111100011" when (t_state = T6_LDA) else
+						  "000110100011" when (t_state = T4_LDA) else
+						  "001011000011" when (t_state = T5_LDA) else
+						  "001111100011" when (t_state = T6_LDA) else
 			    
-		    "000110100011" when (t_state = T4_ADD) else
-		    "001011000011" when (t_state = T5_ADD) else
-		    "001111100011" when (t_state = T6_ADD) else
+						  "000110100011" when (t_state = T4_ADD) else
+					     "001011000001" when (t_state = T5_ADD) else
+					     "001111000111" when (t_state = T6_ADD) else
 
-		    "000110100011" when (t_state = T4_SUB) else
-		    "001011000011" when (t_state = T5_SUB) else
-		    "001111100011" when (t_state = T6_SUB) else
+						  "000110100011" when (t_state = T4_SUB) else
+						  "001011000001" when (t_state = T5_SUB) else
+						  "001111001111" when (t_state = T6_SUB) else
 						  
-		    "000110100011" when (t_state = T4_OUT) else
-		    "001011000011" when (t_state = T5_OUT) else
-		    "001111100011" when (t_state = T6_OUT) else
+						  "000110110010" when (t_state = T4_OUT) else
+						  "001111100011" when (t_state = T5_OUT) else
+						  "001111100011" when (t_state = T6_OUT) else
 
-		    "000110100011" when (t_state = T4_HLT) else
-		    "001011000011" when (t_state = T5_HLT) else
-		    "001111100011" when (t_state = T6_HLT) else				
+						  "001111100011" when (t_state = T4_HLT) else
+						  "001111100011" when (t_state = T5_HLT) else
+						  "001111100011" when (t_state = T6_HLT) else				
 						  
 						
-		    "01010101" when (t_state = STBY_RAM) else
-		    "001111100011" when (t_state = STBY_CLR) else
-		    "001111100011";
+						  "001011100011" when (t_state = STBY_RAM) else
+						  "001111100011" when (t_state = STBY_CLR) else
+						  "001111100011";
 end RTL;
-	 
-					
