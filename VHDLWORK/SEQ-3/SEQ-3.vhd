@@ -27,50 +27,48 @@ begin
 	if(InCLK'event and InCLK = '0') then
 		if (RAMAccess_Neg = '0') then
 			t_state <= STBY_RAM;
-		elsif (RAMAccess_Neg = '1' and RESET_Neg = '0') then
-			t_state <= STBY_CLR;
-		else
-			case t_state is
-				when STBY_RAM => if(RAMAccess_Neg = '1' and RESET_Neg = '1') then
-											t_state <= T0;
-										end if;
-				
-				when STBY_CLR => t_state <= T1;
-				when T1 		  => t_state <= T2;
-				when T2 		  => t_state <= T3;
-				when T3 		  => 
-									   if (InOpeCode = "0000") then
-											t_state <= T4_LDA;
-										elsif (InOpeCode = "0001") then
-											t_state <= T4_ADD;
-										elsif (InOpeCode = "0010") then
-											t_state <= T4_SUB;
-										elsif (InOpeCode = "1110") then
-											t_state <= T4_OUT;
-										else
-											t_state <= T4_HLT;
-										end if;
-				when T4_LDA 	=> t_state <= T5_LDA;
-				when T5_LDA		=> t_state <= T6_LDA;
-				when T6_LDA		=> t_state <= T1;
-				
-				when T4_ADD 	=> t_state <= T5_ADD;
-				when T5_ADD		=> t_state <= T6_ADD;
-				when T6_ADD		=> t_state <= T1;
-				
-				when T4_SUB 	=> t_state <= T5_SUB;
-				when T5_SUB		=> t_state <= T6_SUB;
-				when T6_SUB		=> t_state <= T1;
-				
-				when T4_OUT 	=> t_state <= T5_OUT;
-				when T5_OUT		=> t_state <= T6_OUT;
-				when T6_OUT		=> t_state <= T1;
-				
-				when T4_HLT 	=> t_state <= T5_HLT;
-				when T5_HLT		=> t_state <= T6_HLT;
-				when T6_HLT		=> t_state <= T0;
-				when others   => t_state <= T0;	
-			end case;
+		else 
+			if(RESET_Neg = '0') then
+				t_state <= STBY_CLR;
+			else
+				case t_state is			
+					when STBY_CLR => t_state <= T1;
+					when T1 		  => t_state <= T2;
+					when T2 		  => t_state <= T3;
+					when T3 		  => 
+											if (InOpeCode = "0000") then
+												t_state <= T4_LDA;
+											elsif (InOpeCode = "0001") then
+												t_state <= T4_ADD;
+											elsif (InOpeCode = "0010") then
+												t_state <= T4_SUB;
+											elsif (InOpeCode = "1110") then
+												t_state <= T4_OUT;
+											else
+												t_state <= T4_HLT;
+											end if;
+					when T4_LDA 	=> t_state <= T5_LDA;
+					when T5_LDA		=> t_state <= T6_LDA;
+					when T6_LDA		=> t_state <= T1;
+					
+					when T4_ADD 	=> t_state <= T5_ADD;
+					when T5_ADD		=> t_state <= T6_ADD;
+					when T6_ADD		=> t_state <= T1;
+					
+					when T4_SUB 	=> t_state <= T5_SUB;
+					when T5_SUB		=> t_state <= T6_SUB;
+					when T6_SUB		=> t_state <= T1;
+					
+					when T4_OUT 	=> t_state <= T5_OUT;
+					when T5_OUT		=> t_state <= T6_OUT;
+					when T6_OUT		=> t_state <= T1;
+					
+					when T4_HLT 	=> t_state <= T5_HLT;
+					when T5_HLT		=> t_state <= T6_HLT;
+					when T6_HLT		=> t_state <= T0;
+					when others   => t_state <= T0;	
+				end case;
+			end if;
 		end if;
 	end if;
 end process;
