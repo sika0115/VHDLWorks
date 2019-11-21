@@ -3,13 +3,13 @@ use IEEE.std_logic_1164.all;
 use IEEE.std_logic_unsigned.all;
 
 entity SEQ is 
-	generic(BitsOfOpcode : integer := 4);
+	generic(BitsOfOpcode : integer := 4 NumOfControlLines : integer := 12);
 	port(
 			InCLK,RESET_Neg, RAMAccess_Neg : in std_logic;
 			InOpeCode : in std_logic_vector(BitsOfOpCode - 1 downto 0);
 			OutCLKToMPU, OutCLKToRAM : out std_logic;
 			OutCLRToPC_Neg, OutCLRToIREG : out std_logic;
-			OutControlSignal : out std_logic_vector(7 downto 0)
+			OutControlSignal : out std_logic_vector(NumOfControlLines-1 downto 0)
 	);
 end SEQ;
 	
@@ -85,7 +85,7 @@ OutCLRToPC_Neg   <= '0' when (t_state = STBY_CLR) else
                  	  '1';
 OutCLRToIREG     <= '1' when (t_state = STBY_CLR) else 
                     '0';
-OutControlSignal <= "10100001" when (t_state = T1) else 
+OutControlSignal <= "0101111000011" when (t_state = T1) else 
 						  "10100010" when (t_state = T2) else
 						  "10100011" when (t_state = T3) else
 						  
@@ -109,8 +109,8 @@ OutControlSignal <= "10100001" when (t_state = T1) else
 						  "11110101" when (t_state = T5_HLT) else
 						  "11110110" when (t_state = T6_HLT) else
 						  "01010101" when (t_state = STBY_RAM) else
-						  "11000000" when (t_state = STBY_CLR) else
-						  "10101010";
+						  "001111100011" when (t_state = STBY_CLR) else
+						  "001111100011";
 end RTL;
 	 
 					
