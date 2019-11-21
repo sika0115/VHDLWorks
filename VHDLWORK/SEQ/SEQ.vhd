@@ -85,32 +85,34 @@ OutCLRToPC_Neg   <= '0' when (t_state = STBY_CLR) else
                  	  '1';
 OutCLRToIREG     <= '1' when (t_state = STBY_CLR) else 
                     '0';
-OutControlSignal <= "0101111000011" when (t_state = T1) else 
-						  "10100010" when (t_state = T2) else
-						  "10100011" when (t_state = T3) else
+OutControlSignal <= "010111100011" when (t_state = T1) else 
+		    "101111100011" when (t_state = T2) else
+		    "001001100011" when (t_state = T3) else
 						  
-						  "00000100" when (t_state = T4_LDA) else
-						  "00000101" when (t_state = T5_LDA) else
-						  "00000110" when (t_state = T6_LDA) else
+		    "000110100011" when (t_state = T4_LDA) else
+		    "001011000011" when (t_state = T5_LDA) else
+		    "001111100011" when (t_state = T6_LDA) else
+			    
+		    "000110100011" when (t_state = T4_ADD) else
+		    "001011000011" when (t_state = T5_ADD) else
+		    "001111100011" when (t_state = T6_ADD) else
+
+		    "000110100011" when (t_state = T4_SUB) else
+		    "001011000011" when (t_state = T5_SUB) else
+		    "001111100011" when (t_state = T6_SUB) else
 						  
-						  "00010100" when (t_state = T4_ADD) else
-						  "00010101" when (t_state = T5_ADD) else
-						  "00010110" when (t_state = T6_ADD) else
+		    "000110100011" when (t_state = T4_OUT) else
+		    "001011000011" when (t_state = T5_OUT) else
+		    "001111100011" when (t_state = T6_OUT) else
+
+		    "000110100011" when (t_state = T4_HLT) else
+		    "001011000011" when (t_state = T5_HLT) else
+		    "001111100011" when (t_state = T6_HLT) else				
 						  
-						  "00100100" when (t_state = T4_SUB) else
-						  "00100101" when (t_state = T5_SUB) else
-						  "00100110" when (t_state = T6_SUB) else
-						  
-						  "11100100" when (t_state = T4_OUT) else
-						  "11100101" when (t_state = T5_OUT) else
-						  "11100110" when (t_state = T6_OUT) else
-						  
-						  "11110100" when (t_state = T4_HLT) else
-						  "11110101" when (t_state = T5_HLT) else
-						  "11110110" when (t_state = T6_HLT) else
-						  "01010101" when (t_state = STBY_RAM) else
-						  "001111100011" when (t_state = STBY_CLR) else
-						  "001111100011";
+						
+		    "01010101" when (t_state = STBY_RAM) else
+		    "001111100011" when (t_state = STBY_CLR) else
+		    "001111100011";
 end RTL;
 	 
 					
