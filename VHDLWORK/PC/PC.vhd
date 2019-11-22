@@ -16,10 +16,12 @@ signal count:std_logic_vector(NumOfAddressLines-1 downto 0);
 begin
 	process(CLK)
 	begin
-		if (CLK'event and CLK = '0' and CLR_Neg = '0') then
-			count <= (others => '0');
-		elsif (CLK'event and CLK = '0' and CP = '1') then 
-			count <= count + 1;
+		if (CLK'event and CLK = '0' )then 
+			if (CLR_Neg = '0') then
+				count <= (others => '0');
+			elsif (CLR_Neg = '1' and CP = '1') then 
+				count <= count + '1';
+			end if;
 		end if;
 	end process;
 	
@@ -35,3 +37,4 @@ begin
 end RTL;
 		
 		
+			
