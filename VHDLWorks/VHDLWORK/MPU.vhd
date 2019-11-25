@@ -134,10 +134,4 @@ begin
 end Structure;
 
 		
-									 
-		
-		
-		
-		
-		
 		
