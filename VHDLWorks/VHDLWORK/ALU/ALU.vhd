@@ -23,7 +23,7 @@ begin
 			CFlag <= solution(BitsPerOneWord);
 		
 		elsif (EU = '1' and SU = '1') then
-			solution <= ('0' & InDataA) - ('0' & InDataB);
+			solution <= ('1' & InDataA) - ('0' & InDataB);
 			OutData <= solution(BitsPerOneWord-1 downto 0);
 			CFlag <= not solution(BitsPerOneWord);
 			
@@ -33,7 +33,7 @@ begin
 			CFlag <= solution(BitsPerOneWord);
 			
 		elsif(EU = '0' and SU = '1') then
-			solution <= ('0' & InDataA) - ('0' & InDataB);
+			solution <= ('1' & InDataA) - ('0' & InDataB);
 			OutData <= (others => 'Z');
 			CFlag <= not solution(BitsPerOneWord);
 		end if;
