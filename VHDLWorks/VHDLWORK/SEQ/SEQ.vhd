@@ -92,14 +92,14 @@ OutControlSignal <= "010111100011" when (t_state = T1) else
 					"001111100011" when (t_state = T6_LDA) else
 			    
 					"000110100011" when (t_state = T4_ADD) else
-					"001011000001" when (t_state = T5_ADD) else
+					"001011100001" when (t_state = T5_ADD) else
 					"001111000111" when (t_state = T6_ADD) else
 
 					"000110100011" when (t_state = T4_SUB) else
-					"001011000001" when (t_state = T5_SUB) else
+					"001011100001" when (t_state = T5_SUB) else
 					"001111001111" when (t_state = T6_SUB) else
 						  
-					"000110110010" when (t_state = T4_OUT) else
+					"001111110010" when (t_state = T4_OUT) else
 					"001111100011" when (t_state = T5_OUT) else
 					"001111100011" when (t_state = T6_OUT) else
 
