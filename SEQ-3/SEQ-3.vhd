@@ -1,9 +1,8 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
-use IEEE.std_logic_unsigned.all;
 
 entity SEQ is 
-	generic(BitsOfOpcode : integer := 4);
+	generic(BitsOfOpCode : integer := 4);
 	port(
 			InCLK,RESET_Neg, RAMAccess_Neg : in std_logic;
 			InOpeCode : in std_logic_vector(BitsOfOpCode - 1 downto 0);
